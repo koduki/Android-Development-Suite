@@ -1,4 +1,4 @@
-package cn.orz.pascal.slideshare_viewer;
+package cn.orz.pascal.android_example;
 
 import gueei.binding.Binder;
 import android.app.Application;
