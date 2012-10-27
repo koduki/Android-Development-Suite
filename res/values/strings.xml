@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Android Example</string>
+    <string name="height">Enter your Height</string>
+    <string name="weight">Enter your Weight</string>
+    <string name="calc">Calc BMI</string>
+</resources>
