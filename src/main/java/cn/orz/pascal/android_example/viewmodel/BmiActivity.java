@@ -4,17 +4,20 @@ import cn.orz.pascal.android_example.R;
 import gueei.binding.app.BindingActivity;
 import android.os.Bundle;
 
+/**
+ * Top Activity.
+ * 
+ * @author koduki
+ * 
+ */
 public class BmiActivity extends BindingActivity {
-	/** Called when the activity is first created. */
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		// setContentView(R.layout.main);
+  /** Called when the activity is first created. */
+  @Override
+  public void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
 
-		// モデルを生成
-		BmiViewModel model = new BmiViewModel();
-
-		// Layout.xmlの binding:xxx と modelを関連付ける
-		setAndBindRootView(R.layout.main, model);
-	}
+    // model binding.
+    BmiViewModel model = new BmiViewModel();
+    setAndBindRootView(R.layout.main, model);
+  }
 }
