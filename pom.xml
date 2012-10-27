@@ -10,6 +10,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/ma
     <packaging>apk</packaging>
     <name>Android-Sample</name>
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <platform.version>2.3.3</platform.version>
     </properties>
     <dependencies>
@@ -28,6 +29,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/ma
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.10</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
     <build>
