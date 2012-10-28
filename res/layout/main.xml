@@ -40,4 +40,10 @@
             android:text="@string/calc"
             binding:onClick="calculate"/>
 
+    <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/tweet"
+            binding:onClick="tweet"/>
+
 </LinearLayout>

@@ -4,4 +4,5 @@
     <string name="height">Enter your Height</string>
     <string name="weight">Enter your Weight</string>
     <string name="calc">Calc BMI</string>
+    <string name="tweet">Post Twitter</string>
 </resources>

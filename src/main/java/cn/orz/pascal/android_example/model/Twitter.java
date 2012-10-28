@@ -12,27 +12,10 @@ import twitter4j.conf.ConfigurationBuilder;
  * @author koduki
  */
 public class Twitter {
-    private String consumerKey;
-    private String consumerSecret;
-    private String accessToken;
-    private String accessTokenSecret;
     @Inject
     private twitter4j.Twitter twitter;
 
     public Twitter(){}
-    public Twitter(String consumerKey, String consumerSecret, String accessToken, String accessTokenSecret) {
-        this.consumerKey = consumerKey;
-        this.consumerSecret = consumerSecret;
-        this.accessToken = accessToken;
-        this.accessTokenSecret = accessTokenSecret;
-
-//        ConfigurationBuilder builder  = new ConfigurationBuilder();
-//        builder.setOAuthConsumerKey(consumerKey).setOAuthConsumerSecret(consumerSecret);
-//        builder.setOAuthAccessToken(accessToken);
-//
-//        builder.setOAuthAccessTokenSecret(accessTokenSecret);
-//        this.twitter =  new TwitterFactory(builder.build()).getInstance();
-    }
 
     public Status tweet(String message) {
         try {
