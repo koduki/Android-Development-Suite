@@ -1,7 +1,8 @@
 package cn.orz.pascal.android_example.viewmodel;
 
+import cn.orz.pascal.android_example.config.Config;
 import cn.orz.pascal.android_example.model.BMI;
-import cn.orz.pascal.android_example.model.Twitter;
+import cn.orz.pascal.android_example.model.BMISocialService;
 import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
@@ -9,9 +10,7 @@ import gueei.binding.Command;
 import gueei.binding.observables.DoubleObservable;
 import gueei.binding.observables.StringObservable;
 import android.view.View;
-import twitter4j.Status;
 import twitter4j.TwitterFactory;
-import twitter4j.User;
 import twitter4j.conf.ConfigurationBuilder;
 
 /**
@@ -50,21 +49,21 @@ public class BmiViewModel {
     public final Command tweet = new Command() {
         @Override
         public void Invoke(View arg0, Object... arg1) {
-            Twitter twitter = createTwitter();
-            twitter.tweet(String.format("うわっ…私のBMI、高いすぎ(BMI:%f)", bmi.get()));
+            BMISocialService bmiSocialService = createBmiSocialService();
+            bmiSocialService.tweet(bmi.get());
         }
     };
 
-    private Twitter createTwitter() {
+    private BMISocialService createBmiSocialService() {
         Injector injector = Guice.createInjector(
                 new AbstractModule() {
                     @Override
                     protected void configure() {
                         try {
-                            String consumerKey = "Oiu0AuQnAxiR495Lp6VjoA";
-                            String consumerSecret = "Opsj3GCW1ge8GmCEKDD0c4EjSuZ5qtVtgzQ0FAT6ubA";
-                            String accessToken = "10509102-YyYM7q1hh0HtrXRgfoAO9tSXNkca1XcRJrNaJEOGz";
-                            String accessTokenSecret = "ROZJSbebHa3p3x60nUjjpuk0uqz3njaBtdDiZ9W60";
+                            String consumerKey = Config.twitter.consumerKey;
+                            String consumerSecret = Config.twitter.consumerSecret;
+                            String accessToken = Config.twitter.accessToken;
+                            String accessTokenSecret = Config.twitter.accessTokenSecret;
 
                             ConfigurationBuilder builder = new ConfigurationBuilder();
                             builder.setOAuthConsumerKey(consumerKey).setOAuthConsumerSecret(consumerSecret);
@@ -79,6 +78,6 @@ public class BmiViewModel {
                         }
                     }
                 });
-        return injector.getInstance(Twitter.class);
+        return injector.getInstance(BMISocialService.class);
     }
 }

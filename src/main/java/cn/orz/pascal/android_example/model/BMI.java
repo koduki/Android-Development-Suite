@@ -6,6 +6,8 @@ package cn.orz.pascal.android_example.model;
  * @author koduki
  */
 public final class BMI {
+    public static final int AVERAGE = 22;
+
     private BMI() {
     }
 
