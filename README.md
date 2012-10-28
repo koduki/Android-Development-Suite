@@ -1,11 +1,11 @@
 # Android-Development-Suite
 
-Android development framework suite.
+Android development suite framework.
 - Maven http://maven.apache.org/
-- AndroidBinding http://code.google.com/p/android-binding/
+- android-binding http://code.google.com/p/android-binding/
 - roboguice http://code.google.com/p/roboguice/
-- mockito http://code.google.com/p/mockito/
-- cabash-android(cucumber) https://github.com/calabash/calabash-android
+- Mockito http://code.google.com/p/mockito/
+- CabashAndroid(cucumber) https://github.com/calabash/calabash-android
 
 ## create keysotre for signed apk
 
@@ -45,19 +45,19 @@ Android development framework suite.
           </activeProfiles>
         </settings>
 
-## dependency
+## resolve android-bidings dependency
 
         ./resolve-depends.sh
 
-## build modules include mock
+## build apk include mock modules
 
         mvn clean install
 
-## build modules include mock
+## build apk include real modules
 
         mvn clean install -Pproduction
 
-## build modules include mock
+## build apk with proguard, zipalign and sign
 
         mvn clean install -Prelease
 
@@ -68,4 +68,3 @@ Android development framework suite.
 ## integration test
 
         ./run_it.sh
-
