@@ -1,5 +1,7 @@
 package cn.orz.pascal.android_example.model;
 
+import cn.orz.pascal.android_example.config.Environment;
+import cn.orz.pascal.android_example.injector.TwitterInjector;
 import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
@@ -18,7 +20,7 @@ public class BMISocialServiceTest extends TestCase {
     public void testTweet1(){
         String name = "koduki";
 
-        BMISocialService bmiSocialService = createInstance(name);
+        BMISocialService bmiSocialService = createInstance();
         Status result = bmiSocialService.tweet(24.3374);
 
         assertEquals(name, result.getUser().getScreenName());
@@ -28,39 +30,15 @@ public class BMISocialServiceTest extends TestCase {
     public void testTweet2(){
         String name = "koduki";
 
-        BMISocialService bmiSocialService = createInstance(name);
+        BMISocialService bmiSocialService = createInstance();
         Status result = bmiSocialService.tweet(19.5074);
 
         assertEquals(name, result.getUser().getScreenName());
         assertEquals("うわっ…私のBMI、低すぎ(BMI:19.5)", result.getText());
     }
 
-    private BMISocialService createInstance(final String name) {
-        Injector injector = Guice.createInjector(
-                new AbstractModule() {
-                    @Override
-                    protected void configure() {
-                        try {
-                            twitter4j.Twitter twitter = mock(twitter4j.Twitter.class);
-                            when(twitter.updateStatus(anyString())).thenAnswer(new Answer() {
-                                @Override
-                                public Object answer(InvocationOnMock invocationOnMock) throws Throwable {
-                                    Object[] args = invocationOnMock.getArguments();
-
-                                    Status status = mock(Status.class);
-                                    User user = mock(User.class);
-                                    when(status.getText()).thenReturn((String)args[0]);
-                                    when(status.getUser()).thenReturn(user);
-                                    when(user.getScreenName()).thenReturn(name);
-                                    return status;
-                                }
-                            });
-                            bind(twitter4j.Twitter.class).toInstance(twitter);
-                        } catch (Exception e) {
-                            throw new RuntimeException(e);
-                        }
-                    }
-                });
+    private BMISocialService createInstance() {
+        Injector injector = Guice.createInjector(new TwitterInjector(Environment.Profile.DEV));
         return injector.getInstance(BMISocialService.class);
     }
 }

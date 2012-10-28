@@ -1,6 +1,9 @@
 package cn.orz.pascal.android_example.viewmodel;
 
+import android.util.Log;
 import cn.orz.pascal.android_example.config.Config;
+import cn.orz.pascal.android_example.config.Environment;
+import cn.orz.pascal.android_example.injector.TwitterInjector;
 import cn.orz.pascal.android_example.model.BMI;
 import cn.orz.pascal.android_example.model.BMISocialService;
 import com.google.inject.AbstractModule;
@@ -30,7 +33,7 @@ public class BmiViewModel {
     /**
      * BMI value.
      */
-    public final DoubleObservable bmi = new DoubleObservable(0);
+    public final StringObservable bmi = new StringObservable("0");
 
     /**
      * calculate BMI.
@@ -39,7 +42,7 @@ public class BmiViewModel {
         @Override
         public void Invoke(View arg0, Object... arg1) {
             double result = BMI.calc(Double.parseDouble(weight.get()), Double.parseDouble(height.get()));
-            bmi.set(result);
+            bmi.set(String.format("%.1f", result));
         }
     };
 
@@ -50,34 +53,13 @@ public class BmiViewModel {
         @Override
         public void Invoke(View arg0, Object... arg1) {
             BMISocialService bmiSocialService = createBmiSocialService();
-            bmiSocialService.tweet(bmi.get());
+            Log.d("tweet bmi:", bmi.get());
+            bmiSocialService.tweet(Double.parseDouble(bmi.get()));
         }
     };
 
     private BMISocialService createBmiSocialService() {
-        Injector injector = Guice.createInjector(
-                new AbstractModule() {
-                    @Override
-                    protected void configure() {
-                        try {
-                            String consumerKey = Config.twitter.consumerKey;
-                            String consumerSecret = Config.twitter.consumerSecret;
-                            String accessToken = Config.twitter.accessToken;
-                            String accessTokenSecret = Config.twitter.accessTokenSecret;
-
-                            ConfigurationBuilder builder = new ConfigurationBuilder();
-                            builder.setOAuthConsumerKey(consumerKey).setOAuthConsumerSecret(consumerSecret);
-                            builder.setOAuthAccessToken(accessToken);
-
-                            builder.setOAuthAccessTokenSecret(accessTokenSecret);
-                            twitter4j.Twitter twitter = new TwitterFactory(builder.build()).getInstance();
-
-                            bind(twitter4j.Twitter.class).toInstance(twitter);
-                        } catch (Exception e) {
-                            throw new RuntimeException(e);
-                        }
-                    }
-                });
+        Injector injector = Guice.createInjector(new TwitterInjector(Environment.getInstance().getProfile()));
         return injector.getInstance(BMISocialService.class);
     }
 }

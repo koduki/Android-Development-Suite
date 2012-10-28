@@ -12,6 +12,7 @@
             android:text="@string/height"/>
 
     <EditText
+            android:contentDescription="height"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="number"
@@ -23,6 +24,7 @@
             android:text="@string/weight"/>
 
     <EditText
+            android:contentDescription="weight"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="number"
@@ -35,12 +37,14 @@
             binding:text="bmi"/>
 
     <Button
+            android:contentDescription="@string/calc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/calc"
             binding:onClick="calculate"/>
 
     <Button
+            android:contentDescription="@string/tweet"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/tweet"

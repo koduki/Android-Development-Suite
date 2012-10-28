@@ -1,7 +1,7 @@
 # Android-Example
 
 Android development framework suite.
-Maven + AndroidBinding + roboguice + mockito!
+Maven + AndroidBinding + roboguice + mockito + bash-android!
 
 ## create keysotre for signed apk
 
@@ -53,4 +53,7 @@ Maven + AndroidBinding + roboguice + mockito!
 
         mvn clean install android:deploy android:run -Prelease
 
+## integration test
+
+        ./run_it.sh
 

@@ -48,7 +48,6 @@
             <groupId>org.mockito</groupId>
             <artifactId>mockito-all</artifactId>
             <version>1.9.5</version>
-            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.roboguice</groupId>
@@ -126,20 +125,31 @@
             <!-- using this since activeByDefault does not work well with multiple
                    profiles -->
             <activation>
-                <property>
-                    <name>environment</name>
-                    <value>!production</value>
-                </property>
+                <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
                 <deployment.stage>In Development</deployment.stage>
             </properties>
+            <build>
+                <resources>
+                    <resource>
+                        <directory>src/main/resources.development</directory>
+                    </resource>
+                </resources>
+            </build>
         </profile>
         <profile>
             <id>production</id>
             <properties>
                 <deployment.stage>In Production</deployment.stage>
             </properties>
+            <build>
+                <resources>
+                    <resource>
+                        <directory>src/main/resources.production</directory>
+                    </resource>
+                </resources>
+            </build>
         </profile>
         <profile>
             <id>release</id>
@@ -152,6 +162,11 @@
                 </property>
             </activation>
             <build>
+                <resources>
+                    <resource>
+                        <directory>src/main/resources.production</directory>
+                    </resource>
+                </resources>
                 <plugins>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
