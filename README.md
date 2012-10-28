@@ -1,7 +1,11 @@
-# Android-Example
+# Android-Development-Suite
 
 Android development framework suite.
-Maven + AndroidBinding + roboguice + mockito + bash-android!
+- Maven 
+- AndroidBinding
+- roboguice
+- mockito
+- bash-android(cucumber)
 
 ## create keysotre for signed apk
 
