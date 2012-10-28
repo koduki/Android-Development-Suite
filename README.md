@@ -1,11 +1,11 @@
 # Android-Development-Suite
 
 Android development framework suite.
-- Maven 
-- AndroidBinding
-- roboguice
-- mockito
-- bash-android(cucumber)
+- Maven http://maven.apache.org/
+- AndroidBinding http://code.google.com/p/android-binding/
+- roboguice http://code.google.com/p/roboguice/
+- mockito http://code.google.com/p/mockito/
+- cabash-android(cucumber) https://github.com/calabash/calabash-android
 
 ## create keysotre for signed apk
 
