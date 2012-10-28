@@ -49,13 +49,21 @@ Android development framework suite.
 
         ./resolve-depends.sh
 
-## build 
+## build modules include mock
 
         mvn clean install
 
+## build modules include mock
+
+        mvn clean install -Pproduction
+
+## build modules include mock
+
+        mvn clean install -Prelease
+
 ## deploy on Android
 
-        mvn clean install android:deploy android:run -Prelease
+        mvn clean install android:deploy android:run -Pproduction
 
 ## integration test
 
