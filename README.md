@@ -7,7 +7,7 @@ Android development suite framework.
 - Mockito http://code.google.com/p/mockito/
 - CabashAndroid(cucumber) https://github.com/calabash/calabash-android
 
-## create keysotre for signed apk
+## Create keysotre for signed apk
 
     # JDK6 only.
     keytool -genkey -v \
@@ -19,7 +19,7 @@ Android development suite framework.
     -keyalg RSA \
     -validity 10000
 
-## setting password for signed apk
+## Setting password for signed apk
 
      vi ~/.m2/settings.xml
      <?xml version="1.0" encoding="UTF-8"?>
@@ -45,26 +45,26 @@ Android development suite framework.
        </activeProfiles>
     </settings>
 
-## resolve android-bidings dependency
+## Resolve android-bidings dependency
 
     ./resolve-depends.sh
 
-## build apk include mock modules
+## Build apk include mock modules
 
     mvn clean install
 
-## build apk include real modules
+## Build apk include real modules
 
     mvn clean install -Pproduction
 
-## build apk with proguard, zipalign and sign
+## Build apk with proguard, zipalign and sign
 
     mvn clean install -Prelease
 
-## deploy on Android
+## Deploy on Android
 
     mvn clean install android:deploy android:run -Pproduction
 
-## integration test
+## Integration test
 
     ./run_it.sh
